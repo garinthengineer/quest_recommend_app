@@ -9,7 +9,7 @@
     <p>Ниже приведен список квестов наиболее похожих на <b>{{ req }}</b>. Вы можете перейти по ссылкам, чтобы посмотреть описания квестов.
     </p>
         {% for element in output %}
-            <p><a href={{ url[output.index(element)] }}, target="_blank">{{ element }}</a></p>
+            <p><a href={{ url[output.index(element)] }} target="_blank">{{ element }}</a></p>
         {% endfor %}
     <br></br>
     <p>Нажмите <a href="/">Сюда</a> чтобы попробовать еще раз
