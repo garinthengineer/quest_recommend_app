@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Гильдия Квестов</title>
+  </head>
+  <body>
+    <h1>Искуственный Интеллект Гильдии v0.1</h1>
+    <p>Ниже приведен список квестов наиболее похожих на <b>{{ req }}</b>. Вы можете перейти по ссылкам, чтобы посмотреть описания квестов.
+    </p>
+        {% for element in output %}
+            <p><a href={{ url[output.index(element)] }}, target="_blank">{{ element }}</a></p>
+        {% endfor %}
+    <br></br>
+    <p>Нажмите <a href="/">Сюда</a> чтобы попробовать еще раз
+  </body>
+</html>
