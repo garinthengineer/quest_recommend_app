@@ -6,17 +6,16 @@
         Чтобы получить рекомендацию, пожалуйста, укажите название квеста и число рекомендованных квестов в форме ниже. Названия всех квестов приведены ниже для справки.
       </p>
     <form method="POST">
+        {{ form.hidden_tag() }}
         <p>
-            Название квеста:<br>
-            <input type="text" name="questname" value="Амок">
-            <br>
-            Показать столько похожих квестов (число от 0 до 460):<br>
-            <input type="text" name="number" value="7">
-        </p>
-        <input type="submit" value="Submit">
-        <p>Нажимая кнопку "submit" вы принимаете жизнь, как череду испытаний необходимых для вашей эволюции</p>
-        <p></p>
-        <p></p>
+          {{ form.questname.label }}<br>
+          {{ form.questname }}<br>
+          {{ form.number.label }}<br>
+          {{ form.number }}<br>
+          <br>
+        {{ form.submit }}
+        <br>
+    </form>
         <h3>Названия квестов (для справки):</h3>
         <p> Сингулярность </p>
         <p> Золото Майя </p>
