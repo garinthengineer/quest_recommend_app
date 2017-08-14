@@ -7,14 +7,18 @@ import numpy as np
 import os
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret!' #this is to protect from CSRS attacks the string must be a secret word
+#app.config['SECRET_KEY'] = 'secret!' #this is to protect from CSRS attacks the string must be a secret word
 data = pd.read_csv('quests.csv', sep=";", encoding='cp1251')
 rated = data[data[u'Атмосфера']>0].values
 
 class TextInput(Form):
-    questname = TextField(u'Название квеста:')
-    number = TextField(u'Число квестов:', [NumberRange(min=1, max=460, message="Введите число от 0 до 460")])
+    questname = TextField(u'Название квеста:', [InputRequired()])
+    number = TextField(u'Число квестов:', [InputRequired()])
     submit = SubmitField(u'Показать')
+
+    def validate_number(form):
+        if int(form.number.data) <= 0 or int(form.number.data) > 460:
+            raise ValidationError(u'Пожалуйста, введите число между 0 и 460')
 
 @app.route('/', methods=['GET','POST'])
 def index():
