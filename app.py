@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from flask_wtf import Form
 from wtforms.fields import TextField, SubmitField
+from wtforms.validators import NumberRange
 import pandas as pd
 import numpy as np
 import os
@@ -12,7 +13,7 @@ rated = data[data[u'Атмосфера']>0].values
 
 class TextInput(Form):
     questname = TextField(u'Название квеста:')
-    number = TextField(u'Число квестов:')
+    number = TextField(u'Число квестов:', [NumberRange(min=1, max=460, message="Введите число от 0 до 460")])
     submit = SubmitField(u'Показать')
 
 @app.route('/', methods=['GET','POST'])
