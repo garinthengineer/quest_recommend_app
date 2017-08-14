@@ -13,7 +13,7 @@ rated = data[data[u'Атмосфера']>0].values
 choices = rated[:,1].tolist()
 
 class TextInput(Form):
-    questname = SelectField(label='Название квеста', choices=[(f, f) for f in choices])
+    questname = SelectField(label='Название квеста', choices=[(f, f) for f in sorted(choices)])
     number = TextField(u'Число квестов:')
     submit = SubmitField(u'Показать')
 
