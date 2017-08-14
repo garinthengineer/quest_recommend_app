@@ -30,14 +30,14 @@ def index():
         rest =  rated[np.where(rated[:,1] != req)][:,0:10]
         model = rated[np.where(rated[:,1] == req)][0,0:10]
         dist_2 = []
-        for i in rest[:,4:10]:
-            dist_2.append(sum((model[4:]-i)**2)/len(i))
+        for i in range(len(rest[:,4:10])):
+            dist_2.append([sum((model[4:]-rest[:,4:10][i])**2)/len(rest[:,4:10][i]),i])
         output = []
         url = []
         for i in range(numb):
-            output.append(rest[dist_2.index(min(sorted(dist_2)[i:]))][1])
+            output.append(rest[min(sorted(dist_2)[i:])[1]][1])
             url.append('http://questguild.ru/quests/'+
-                        str(rest[dist_2.index(min(sorted(dist_2)[i:]))][3]))
+                        str(rest[min(sorted(dist_2)[i:])[1]][3]))
         return result(output=output, url=url, req=req)
     return render_template('index.html', form=form, errmsg=errmsg)
 
@@ -45,9 +45,9 @@ def index():
 def result(output, url, req):
     return render_template('result.html', output=output, url=url, req=req)
 
-#if __name__ == '__main__':
-#    app.run( debug=True)
 if __name__ == '__main__':
-    app.debug = True
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run( debug=True)
+#if __name__ == '__main__':
+#    app.debug = True
+#    port = int(os.environ.get("PORT", 5000))
+#    app.run(host='0.0.0.0', port=port)
